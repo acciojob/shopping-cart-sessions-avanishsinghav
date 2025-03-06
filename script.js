@@ -59,10 +59,14 @@ function renderCart() {
 function addToCart(productId) {
   let cart = loadCart();
   const product = products.find((p) => p.id === productId);
-  cart.push(product);
-  saveCart(cart);
-  renderCart();
+
+  if (product && !cart.some((item) => item.id === productId)) {
+    cart.push(product);
+    saveCart(cart);
+    renderCart();
+  }
 }
+
 
 // Remove item from cart
 function removeFromCart(productId) {
