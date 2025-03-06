@@ -60,12 +60,13 @@ function addToCart(productId) {
   let cart = loadCart();
   const product = products.find((p) => p.id === productId);
 
-  if (product && !cart.some((item) => item.id === productId)) {
-    cart.push(product);
+  if (product) {
+    cart.push({ id: product.id, name: product.name, price: product.price });
     saveCart(cart);
     renderCart();
   }
 }
+
 
 
 // Remove item from cart
